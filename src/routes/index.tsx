@@ -193,11 +193,12 @@ function Index() {
   );
 }
 
-function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function Stat({ icon, label, value, sub }: { icon: React.ReactNode; label: string; value: string; sub?: string }) {
   return (
     <div className="bg-white/15 rounded-lg px-3 py-2 backdrop-blur">
       <div className="flex items-center justify-center gap-1 text-xs opacity-90">{icon}{label}</div>
-      <div className="text-lg font-semibold">{value}</div>
+      <div className="text-lg font-semibold leading-tight">{value}</div>
+      {sub && <div className="text-xs opacity-80">{sub}</div>}
     </div>
   );
 }
