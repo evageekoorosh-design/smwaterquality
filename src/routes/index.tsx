@@ -66,7 +66,7 @@ function Index() {
             </div>
           </div>
           <Badge variant="outline" className="hidden sm:inline-flex">
-            Last 7 days · generated {new Date(data.generated_at).toLocaleString()}
+            Last 7 days · generated {data.generated_at.slice(0, 16).replace("T", " ")} UTC
           </Badge>
         </div>
       </header>
@@ -83,8 +83,8 @@ function Index() {
               </p>
             </div>
             <div className="grid grid-cols-3 gap-4 text-center">
-              <Stat icon={<Thermometer className="size-4" />} label="Water" value={latest.water_temp_c != null ? `${latest.water_temp_c}°C` : "—"} />
-              <Stat icon={<Thermometer className="size-4" />} label="Air"   value={latest.air_temp_c   != null ? `${latest.air_temp_c}°C`   : "—"} />
+              <Stat icon={<Thermometer className="size-4" />} label="Water" value={latest.water_temp_c != null ? `${latest.water_temp_c}°C` : "—"} sub={latest.water_temp_c != null ? `${(latest.water_temp_c * 9/5 + 32).toFixed(1)}°F` : undefined} />
+              <Stat icon={<Thermometer className="size-4" />} label="Air"   value={latest.air_temp_c   != null ? `${latest.air_temp_c}°C`   : "—"} sub={latest.air_temp_c   != null ? `${(latest.air_temp_c   * 9/5 + 32).toFixed(1)}°F` : undefined} />
               <Stat icon={<CloudRain className="size-4" />}   label="Rain (1h)" value={`${(latest.precip_mm ?? 0).toFixed(1)}mm`} />
             </div>
           </div>
@@ -193,11 +193,12 @@ function Index() {
   );
 }
 
-function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function Stat({ icon, label, value, sub }: { icon: React.ReactNode; label: string; value: string; sub?: string }) {
   return (
     <div className="bg-white/15 rounded-lg px-3 py-2 backdrop-blur">
       <div className="flex items-center justify-center gap-1 text-xs opacity-90">{icon}{label}</div>
-      <div className="text-lg font-semibold">{value}</div>
+      <div className="text-lg font-semibold leading-tight">{value}</div>
+      {sub && <div className="text-xs opacity-80">{sub}</div>}
     </div>
   );
 }
