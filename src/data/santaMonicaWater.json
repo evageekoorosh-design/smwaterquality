@@ -1,0 +1,1437 @@
+{
+  "station": {
+    "id": "ICAC1",
+    "name": "Santa Monica Pier, CA",
+    "lat": 34.008,
+    "lon": -118.499,
+    "source": "NOAA NDBC"
+  },
+  "generated_at": "2026-05-19T23:59:54.285560Z",
+  "notes": {
+    "air_temp_c": "Real NOAA NDBC ICAC1 hourly avg",
+    "water_temp_c": "Real NOAA NDBC ICAC1 hourly avg",
+    "precip_mm": "Real Open-Meteo / NOAA gridpoint at 34.008,-118.499",
+    "enterococcus_mpn": "PROTOTYPE synthesized (rain-correlated). Replace with LA County DPH / Heal the Bay readings.",
+    "status_threshold": "CA single-sample standard: >104 MPN/100mL = unsafe, >35 = caution"
+  },
+  "hourly": [
+    {
+      "time": "2026-05-12T23:00:00Z",
+      "air_temp_c": null,
+      "water_temp_c": null,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T00:00:00Z",
+      "air_temp_c": 16.35,
+      "water_temp_c": 18.4,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.0,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T01:00:00Z",
+      "air_temp_c": 16.4,
+      "water_temp_c": 18.52,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T02:00:00Z",
+      "air_temp_c": 16.15,
+      "water_temp_c": 18.56,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T03:00:00Z",
+      "air_temp_c": 16.1,
+      "water_temp_c": 18.23,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T04:00:00Z",
+      "air_temp_c": 16.02,
+      "water_temp_c": 17.12,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T05:00:00Z",
+      "air_temp_c": 16.0,
+      "water_temp_c": 17.35,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T06:00:00Z",
+      "air_temp_c": 16.12,
+      "water_temp_c": 17.89,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 3.0,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T07:00:00Z",
+      "air_temp_c": 16.12,
+      "water_temp_c": 18.06,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T08:00:00Z",
+      "air_temp_c": 16.27,
+      "water_temp_c": 18.09,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.0,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T09:00:00Z",
+      "air_temp_c": 16.47,
+      "water_temp_c": 18.1,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T10:00:00Z",
+      "air_temp_c": 16.38,
+      "water_temp_c": 18.1,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T11:00:00Z",
+      "air_temp_c": 16.2,
+      "water_temp_c": 17.8,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.0,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T12:00:00Z",
+      "air_temp_c": 15.73,
+      "water_temp_c": 17.22,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.0,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T13:00:00Z",
+      "air_temp_c": 15.78,
+      "water_temp_c": 16.63,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T14:00:00Z",
+      "air_temp_c": 15.95,
+      "water_temp_c": 17.13,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T15:00:00Z",
+      "air_temp_c": 16.25,
+      "water_temp_c": 17.12,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T16:00:00Z",
+      "air_temp_c": 16.4,
+      "water_temp_c": 17.53,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 6.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T17:00:00Z",
+      "air_temp_c": 16.6,
+      "water_temp_c": 17.57,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T18:00:00Z",
+      "air_temp_c": 16.77,
+      "water_temp_c": 17.73,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T19:00:00Z",
+      "air_temp_c": 16.77,
+      "water_temp_c": 18.19,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T20:00:00Z",
+      "air_temp_c": 16.77,
+      "water_temp_c": 18.47,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T21:00:00Z",
+      "air_temp_c": 16.8,
+      "water_temp_c": 18.77,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T22:00:00Z",
+      "air_temp_c": 16.77,
+      "water_temp_c": 18.8,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-13T23:00:00Z",
+      "air_temp_c": 16.82,
+      "water_temp_c": 18.89,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T00:00:00Z",
+      "air_temp_c": 16.7,
+      "water_temp_c": 18.97,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T01:00:00Z",
+      "air_temp_c": 16.45,
+      "water_temp_c": 18.24,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T02:00:00Z",
+      "air_temp_c": 16.4,
+      "water_temp_c": 17.59,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 2.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T03:00:00Z",
+      "air_temp_c": 16.37,
+      "water_temp_c": 16.93,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 13.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T04:00:00Z",
+      "air_temp_c": 16.4,
+      "water_temp_c": 16.97,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T05:00:00Z",
+      "air_temp_c": 16.25,
+      "water_temp_c": 16.7,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 13.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T06:00:00Z",
+      "air_temp_c": 16.25,
+      "water_temp_c": 16.64,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T07:00:00Z",
+      "air_temp_c": 15.95,
+      "water_temp_c": 17.04,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T08:00:00Z",
+      "air_temp_c": 15.57,
+      "water_temp_c": 17.53,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T09:00:00Z",
+      "air_temp_c": 15.38,
+      "water_temp_c": 17.73,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T10:00:00Z",
+      "air_temp_c": 15.3,
+      "water_temp_c": 17.52,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 15.0,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T11:00:00Z",
+      "air_temp_c": 15.35,
+      "water_temp_c": 16.8,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T12:00:00Z",
+      "air_temp_c": 15.33,
+      "water_temp_c": 16.49,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T13:00:00Z",
+      "air_temp_c": 15.55,
+      "water_temp_c": 16.57,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T14:00:00Z",
+      "air_temp_c": 16.12,
+      "water_temp_c": 17.15,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T15:00:00Z",
+      "air_temp_c": 16.65,
+      "water_temp_c": 17.18,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T16:00:00Z",
+      "air_temp_c": 17.15,
+      "water_temp_c": 17.22,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T17:00:00Z",
+      "air_temp_c": 17.1,
+      "water_temp_c": 17.4,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 6.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T18:00:00Z",
+      "air_temp_c": 16.85,
+      "water_temp_c": 17.82,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 12.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T19:00:00Z",
+      "air_temp_c": 16.95,
+      "water_temp_c": 18.1,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T20:00:00Z",
+      "air_temp_c": 17.25,
+      "water_temp_c": 18.29,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 14.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T21:00:00Z",
+      "air_temp_c": 17.4,
+      "water_temp_c": 18.48,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T22:00:00Z",
+      "air_temp_c": 17.3,
+      "water_temp_c": 18.5,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 12.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-14T23:00:00Z",
+      "air_temp_c": 17.27,
+      "water_temp_c": 18.77,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 12.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T00:00:00Z",
+      "air_temp_c": 16.98,
+      "water_temp_c": 18.77,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 15.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T01:00:00Z",
+      "air_temp_c": 16.9,
+      "water_temp_c": 18.73,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 14.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T02:00:00Z",
+      "air_temp_c": 16.5,
+      "water_temp_c": 18.55,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 3.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T03:00:00Z",
+      "air_temp_c": 16.5,
+      "water_temp_c": 18.6,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T04:00:00Z",
+      "air_temp_c": 16.45,
+      "water_temp_c": 18.7,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 12.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T05:00:00Z",
+      "air_temp_c": 16.47,
+      "water_temp_c": 18.77,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T06:00:00Z",
+      "air_temp_c": 16.32,
+      "water_temp_c": 18.77,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T07:00:00Z",
+      "air_temp_c": 16.23,
+      "water_temp_c": 18.66,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 5.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T08:00:00Z",
+      "air_temp_c": 15.97,
+      "water_temp_c": 18.53,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 12.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T09:00:00Z",
+      "air_temp_c": 15.62,
+      "water_temp_c": 18.45,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.0,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T10:00:00Z",
+      "air_temp_c": 15.7,
+      "water_temp_c": 18.39,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 5.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T11:00:00Z",
+      "air_temp_c": 15.75,
+      "water_temp_c": 18.37,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 5.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T12:00:00Z",
+      "air_temp_c": 15.93,
+      "water_temp_c": 17.91,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 6.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T13:00:00Z",
+      "air_temp_c": 16.12,
+      "water_temp_c": 17.6,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T14:00:00Z",
+      "air_temp_c": 16.35,
+      "water_temp_c": 16.8,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 17.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T15:00:00Z",
+      "air_temp_c": 16.42,
+      "water_temp_c": 16.34,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T16:00:00Z",
+      "air_temp_c": 16.68,
+      "water_temp_c": 16.4,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T17:00:00Z",
+      "air_temp_c": 16.85,
+      "water_temp_c": 16.93,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T18:00:00Z",
+      "air_temp_c": 16.88,
+      "water_temp_c": 18.2,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 13.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T19:00:00Z",
+      "air_temp_c": 16.98,
+      "water_temp_c": 18.35,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 15.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T20:00:00Z",
+      "air_temp_c": 16.89,
+      "water_temp_c": 18.47,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T21:00:00Z",
+      "air_temp_c": 16.93,
+      "water_temp_c": 18.52,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 3.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T22:00:00Z",
+      "air_temp_c": 17.03,
+      "water_temp_c": 18.6,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-15T23:00:00Z",
+      "air_temp_c": 17.2,
+      "water_temp_c": 18.67,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 6.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T00:00:00Z",
+      "air_temp_c": 17.33,
+      "water_temp_c": 18.9,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T01:00:00Z",
+      "air_temp_c": 17.32,
+      "water_temp_c": 18.3,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T02:00:00Z",
+      "air_temp_c": 17.2,
+      "water_temp_c": 17.77,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 13.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T03:00:00Z",
+      "air_temp_c": 16.97,
+      "water_temp_c": 17.4,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T04:00:00Z",
+      "air_temp_c": 16.68,
+      "water_temp_c": 16.82,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T05:00:00Z",
+      "air_temp_c": 16.5,
+      "water_temp_c": 16.81,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T06:00:00Z",
+      "air_temp_c": 16.25,
+      "water_temp_c": 17.77,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T07:00:00Z",
+      "air_temp_c": 16.0,
+      "water_temp_c": 17.8,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 14.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T08:00:00Z",
+      "air_temp_c": 15.93,
+      "water_temp_c": 17.77,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 13.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T09:00:00Z",
+      "air_temp_c": 16.0,
+      "water_temp_c": 17.7,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T10:00:00Z",
+      "air_temp_c": 16.1,
+      "water_temp_c": 17.62,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T11:00:00Z",
+      "air_temp_c": 16.07,
+      "water_temp_c": 17.5,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T12:00:00Z",
+      "air_temp_c": 16.13,
+      "water_temp_c": 17.53,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T13:00:00Z",
+      "air_temp_c": 16.2,
+      "water_temp_c": 17.47,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T14:00:00Z",
+      "air_temp_c": 16.3,
+      "water_temp_c": 17.2,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T15:00:00Z",
+      "air_temp_c": 16.57,
+      "water_temp_c": 16.87,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 12.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T16:00:00Z",
+      "air_temp_c": 16.62,
+      "water_temp_c": 16.65,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 5.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T17:00:00Z",
+      "air_temp_c": 16.38,
+      "water_temp_c": 17.27,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T18:00:00Z",
+      "air_temp_c": 16.45,
+      "water_temp_c": 17.68,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T19:00:00Z",
+      "air_temp_c": 16.4,
+      "water_temp_c": 18.02,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 6.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T20:00:00Z",
+      "air_temp_c": 16.12,
+      "water_temp_c": 18.3,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T21:00:00Z",
+      "air_temp_c": 16.3,
+      "water_temp_c": 18.52,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T22:00:00Z",
+      "air_temp_c": 16.32,
+      "water_temp_c": 18.91,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 5.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-16T23:00:00Z",
+      "air_temp_c": 16.73,
+      "water_temp_c": 18.94,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 12.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T00:00:00Z",
+      "air_temp_c": 16.95,
+      "water_temp_c": 18.68,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T01:00:00Z",
+      "air_temp_c": 17.75,
+      "water_temp_c": 17.5,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 6.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T02:00:00Z",
+      "air_temp_c": 17.45,
+      "water_temp_c": 16.75,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 15.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T03:00:00Z",
+      "air_temp_c": 16.6,
+      "water_temp_c": 16.49,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 16.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T04:00:00Z",
+      "air_temp_c": 16.37,
+      "water_temp_c": 16.53,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T05:00:00Z",
+      "air_temp_c": 16.12,
+      "water_temp_c": 16.62,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 5.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T06:00:00Z",
+      "air_temp_c": 16.3,
+      "water_temp_c": 16.55,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T07:00:00Z",
+      "air_temp_c": 16.47,
+      "water_temp_c": 16.32,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 3.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T08:00:00Z",
+      "air_temp_c": 16.27,
+      "water_temp_c": 16.5,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T09:00:00Z",
+      "air_temp_c": 16.0,
+      "water_temp_c": 16.57,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T10:00:00Z",
+      "air_temp_c": 15.93,
+      "water_temp_c": 16.37,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 18.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T11:00:00Z",
+      "air_temp_c": 15.9,
+      "water_temp_c": 16.68,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T12:00:00Z",
+      "air_temp_c": 15.9,
+      "water_temp_c": 16.8,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T13:00:00Z",
+      "air_temp_c": 16.15,
+      "water_temp_c": 16.9,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 12.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T14:00:00Z",
+      "air_temp_c": 16.82,
+      "water_temp_c": 16.89,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T15:00:00Z",
+      "air_temp_c": 16.88,
+      "water_temp_c": 16.74,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 13.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T16:00:00Z",
+      "air_temp_c": 16.65,
+      "water_temp_c": 16.48,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T17:00:00Z",
+      "air_temp_c": 16.75,
+      "water_temp_c": 16.42,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 17.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T18:00:00Z",
+      "air_temp_c": 16.9,
+      "water_temp_c": 16.52,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T19:00:00Z",
+      "air_temp_c": 17.1,
+      "water_temp_c": 17.38,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T20:00:00Z",
+      "air_temp_c": 17.23,
+      "water_temp_c": 18.0,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T21:00:00Z",
+      "air_temp_c": 17.4,
+      "water_temp_c": 18.43,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T22:00:00Z",
+      "air_temp_c": 16.23,
+      "water_temp_c": 18.71,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-17T23:00:00Z",
+      "air_temp_c": 16.35,
+      "water_temp_c": 18.8,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T00:00:00Z",
+      "air_temp_c": 16.5,
+      "water_temp_c": 19.0,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T01:00:00Z",
+      "air_temp_c": 16.45,
+      "water_temp_c": 19.1,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 12.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T02:00:00Z",
+      "air_temp_c": 16.3,
+      "water_temp_c": 18.3,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T03:00:00Z",
+      "air_temp_c": 16.3,
+      "water_temp_c": 16.07,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T04:00:00Z",
+      "air_temp_c": 16.27,
+      "water_temp_c": 15.77,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T05:00:00Z",
+      "air_temp_c": 16.33,
+      "water_temp_c": 15.84,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 13.0,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T06:00:00Z",
+      "air_temp_c": 16.3,
+      "water_temp_c": 15.77,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 21.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T07:00:00Z",
+      "air_temp_c": 16.18,
+      "water_temp_c": 15.91,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T08:00:00Z",
+      "air_temp_c": 16.23,
+      "water_temp_c": 16.44,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T09:00:00Z",
+      "air_temp_c": 16.25,
+      "water_temp_c": 16.8,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T10:00:00Z",
+      "air_temp_c": 16.02,
+      "water_temp_c": 16.6,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T11:00:00Z",
+      "air_temp_c": 16.03,
+      "water_temp_c": 16.5,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T12:00:00Z",
+      "air_temp_c": 16.2,
+      "water_temp_c": 16.51,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T13:00:00Z",
+      "air_temp_c": 16.48,
+      "water_temp_c": 17.0,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T14:00:00Z",
+      "air_temp_c": 17.57,
+      "water_temp_c": 17.17,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T15:00:00Z",
+      "air_temp_c": 17.1,
+      "water_temp_c": 17.2,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T16:00:00Z",
+      "air_temp_c": 17.13,
+      "water_temp_c": 17.0,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T17:00:00Z",
+      "air_temp_c": 17.02,
+      "water_temp_c": 16.47,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 13.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T18:00:00Z",
+      "air_temp_c": 17.0,
+      "water_temp_c": 16.7,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T19:00:00Z",
+      "air_temp_c": 17.13,
+      "water_temp_c": 18.13,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 6.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T20:00:00Z",
+      "air_temp_c": 17.4,
+      "water_temp_c": 18.38,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T21:00:00Z",
+      "air_temp_c": 17.4,
+      "water_temp_c": 18.4,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T22:00:00Z",
+      "air_temp_c": 17.4,
+      "water_temp_c": 18.65,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-18T23:00:00Z",
+      "air_temp_c": 17.5,
+      "water_temp_c": 18.88,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 5.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T00:00:00Z",
+      "air_temp_c": 17.7,
+      "water_temp_c": 19.1,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 14.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T01:00:00Z",
+      "air_temp_c": 17.7,
+      "water_temp_c": 19.04,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T02:00:00Z",
+      "air_temp_c": 17.47,
+      "water_temp_c": 19.0,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 5.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T03:00:00Z",
+      "air_temp_c": 17.43,
+      "water_temp_c": 18.87,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T04:00:00Z",
+      "air_temp_c": 17.19,
+      "water_temp_c": 16.74,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 17.3,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T05:00:00Z",
+      "air_temp_c": 16.88,
+      "water_temp_c": 15.6,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T06:00:00Z",
+      "air_temp_c": 16.77,
+      "water_temp_c": 15.93,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T07:00:00Z",
+      "air_temp_c": 16.18,
+      "water_temp_c": 17.16,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T08:00:00Z",
+      "air_temp_c": 16.03,
+      "water_temp_c": 17.83,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T09:00:00Z",
+      "air_temp_c": 15.63,
+      "water_temp_c": 17.83,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 6.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T10:00:00Z",
+      "air_temp_c": 15.43,
+      "water_temp_c": 17.8,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 9.4,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T11:00:00Z",
+      "air_temp_c": 15.28,
+      "water_temp_c": 17.62,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 8.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T12:00:00Z",
+      "air_temp_c": 15.25,
+      "water_temp_c": 17.6,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 5.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T13:00:00Z",
+      "air_temp_c": 15.73,
+      "water_temp_c": 17.77,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 4.9,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T14:00:00Z",
+      "air_temp_c": 17.5,
+      "water_temp_c": 17.8,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 17.0,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T15:00:00Z",
+      "air_temp_c": 17.07,
+      "water_temp_c": 17.8,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 11.1,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T16:00:00Z",
+      "air_temp_c": 17.03,
+      "water_temp_c": 17.76,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.2,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T17:00:00Z",
+      "air_temp_c": 17.15,
+      "water_temp_c": 17.9,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 15.0,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T18:00:00Z",
+      "air_temp_c": 17.57,
+      "water_temp_c": 18.09,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T19:00:00Z",
+      "air_temp_c": 17.93,
+      "water_temp_c": 18.08,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 6.8,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T20:00:00Z",
+      "air_temp_c": 17.8,
+      "water_temp_c": 18.28,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.7,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T21:00:00Z",
+      "air_temp_c": 17.88,
+      "water_temp_c": 18.62,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 7.5,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T22:00:00Z",
+      "air_temp_c": 17.98,
+      "water_temp_c": 19.0,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 10.6,
+      "status": "safe"
+    },
+    {
+      "time": "2026-05-19T23:00:00Z",
+      "air_temp_c": 18.1,
+      "water_temp_c": 19.4,
+      "precip_mm": 0.0,
+      "enterococcus_mpn": 12.9,
+      "status": "safe"
+    }
+  ],
+  "daily": [
+    {
+      "date": "2026-05-12",
+      "air_temp_c_avg": null,
+      "water_temp_c_avg": null,
+      "precip_mm_total": 0,
+      "enterococcus_mpn_max": 7.1,
+      "enterococcus_mpn_avg": 7.1
+    },
+    {
+      "date": "2026-05-13",
+      "air_temp_c_avg": 16.33,
+      "water_temp_c_avg": 17.93,
+      "precip_mm_total": 0,
+      "enterococcus_mpn_max": 11.6,
+      "enterococcus_mpn_avg": 8.1
+    },
+    {
+      "date": "2026-05-14",
+      "air_temp_c_avg": 16.39,
+      "water_temp_c_avg": 17.53,
+      "precip_mm_total": 0,
+      "enterococcus_mpn_max": 15.0,
+      "enterococcus_mpn_avg": 9.0
+    },
+    {
+      "date": "2026-05-15",
+      "air_temp_c_avg": 16.49,
+      "water_temp_c_avg": 18.17,
+      "precip_mm_total": 0,
+      "enterococcus_mpn_max": 17.7,
+      "enterococcus_mpn_avg": 9.5
+    },
+    {
+      "date": "2026-05-16",
+      "air_temp_c_avg": 16.45,
+      "water_temp_c_avg": 17.73,
+      "precip_mm_total": 0,
+      "enterococcus_mpn_max": 14.3,
+      "enterococcus_mpn_avg": 8.9
+    },
+    {
+      "date": "2026-05-17",
+      "air_temp_c_avg": 16.6,
+      "water_temp_c_avg": 17.07,
+      "precip_mm_total": 0,
+      "enterococcus_mpn_max": 18.9,
+      "enterococcus_mpn_avg": 8.1
+    },
+    {
+      "date": "2026-05-18",
+      "air_temp_c_avg": 16.69,
+      "water_temp_c_avg": 17.19,
+      "precip_mm_total": 0,
+      "enterococcus_mpn_max": 21.3,
+      "enterococcus_mpn_avg": 8.3
+    },
+    {
+      "date": "2026-05-19",
+      "air_temp_c_avg": 16.95,
+      "water_temp_c_avg": 17.94,
+      "precip_mm_total": 0,
+      "enterococcus_mpn_max": 17.3,
+      "enterococcus_mpn_avg": 9.4
+    }
+  ]
+}
