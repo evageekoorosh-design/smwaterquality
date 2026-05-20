@@ -83,8 +83,8 @@ function Index() {
               </p>
             </div>
             <div className="grid grid-cols-3 gap-4 text-center">
-              <Stat icon={<Thermometer className="size-4" />} label="Water" value={latest.water_temp_c != null ? `${latest.water_temp_c}°C` : "—"} />
-              <Stat icon={<Thermometer className="size-4" />} label="Air"   value={latest.air_temp_c   != null ? `${latest.air_temp_c}°C`   : "—"} />
+              <Stat icon={<Thermometer className="size-4" />} label="Water" value={latest.water_temp_c != null ? `${latest.water_temp_c}°C` : "—"} sub={latest.water_temp_c != null ? `${(latest.water_temp_c * 9/5 + 32).toFixed(1)}°F` : undefined} />
+              <Stat icon={<Thermometer className="size-4" />} label="Air"   value={latest.air_temp_c   != null ? `${latest.air_temp_c}°C`   : "—"} sub={latest.air_temp_c   != null ? `${(latest.air_temp_c   * 9/5 + 32).toFixed(1)}°F` : undefined} />
               <Stat icon={<CloudRain className="size-4" />}   label="Rain (1h)" value={`${(latest.precip_mm ?? 0).toFixed(1)}mm`} />
             </div>
           </div>
