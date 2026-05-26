@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { useHydrated } from "@tanstack/react-router";
 import staticData from "@/data/santaMonicaWater.json";
 import { getLiveWaterData, type LiveResponse } from "@/lib/liveWater.functions";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,7 +30,8 @@ const statusStyles: Record<string, { label: string; bg: string; text: string; ri
 
 function Index() {
   const fetchLive = useServerFn(getLiveWaterData);
-  const hydrated = useHydrated();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const { data, dataUpdatedAt, isFetching } = useQuery<LiveResponse>({
     queryKey: ["live-water"],
     queryFn: () => fetchLive(),
@@ -77,7 +77,7 @@ function Index() {
           </div>
           <Badge variant="outline" className="hidden sm:inline-flex gap-1.5">
             <span className={`size-1.5 rounded-full ${isFetching ? "bg-amber-500 animate-pulse" : "bg-emerald-500"}`} />
-            {hydrated ? `Live · updated ${new Date(dataUpdatedAt).toLocaleTimeString()}` : "Live"}
+            {mounted ? `Live · updated ${new Date(dataUpdatedAt).toLocaleTimeString()}` : "Live"}
           </Badge>
         </div>
       </header>
@@ -110,8 +110,8 @@ function Index() {
                 <XAxis dataKey="t" tick={{ fontSize: 10 }} interval={23} />
                 <YAxis tick={{ fontSize: 10 }} domain={["auto", "auto"]} />
                 <Tooltip />
-                <Line type="monotone" dataKey="water" stroke="#0284c7" dot={false} name="Water" strokeWidth={2} />
-                <Line type="monotone" dataKey="air"   stroke="#f59e0b" dot={false} name="Air"   strokeWidth={2} />
+                <Line type="monotone" dataKey="water" stroke="#0284c7" dot={false} name="Water" strokeWidth={2} connectNulls />
+                <Line type="monotone" dataKey="air"   stroke="#f59e0b" dot={false} name="Air"   strokeWidth={2} connectNulls />
               </LineChart>
             </ResponsiveContainer>
             <div className="mt-3 text-right">
