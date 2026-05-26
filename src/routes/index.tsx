@@ -108,7 +108,7 @@ function Index() {
                 to="/why-temperature"
                 className="text-xs text-sky-600 hover:text-sky-700 hover:underline transition-colors"
               >
-                Why beach water temperature matters →
+                Why Beach Water Temperature Matters →
               </Link>
             </div>
           </ChartCard>
