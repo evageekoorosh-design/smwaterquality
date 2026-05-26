@@ -128,7 +128,7 @@ export const getLiveWaterData = createServerFn({ method: "GET" }).handler(
     }
     const avg = (xs: number[]) =>
       xs.length ? Math.round((xs.reduce((a, b) => a + b, 0) / xs.length) * 100) / 100 : null;
-    const daily = Array.from(byDay.entries()).map(([date, rows]) => {
+    const daily: Daily[] = Array.from(byDay.entries()).map(([date, rows]) => {
       const airs = rows.map((r) => r.air_temp_c).filter((v): v is number => v != null);
       const waters = rows.map((r) => r.water_temp_c).filter((v): v is number => v != null);
       const bacts = rows.map((r) => r.enterococcus_mpn);
