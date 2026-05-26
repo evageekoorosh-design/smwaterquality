@@ -29,11 +29,16 @@ const statusStyles: Record<string, { label: string; bg: string; text: string; ri
 };
 
 function Index() {
+  const fetchLive = useServerFn(getLiveWaterData);
+  const { data, dataUpdatedAt, isFetching } = useQuery<LiveResponse>({
+    queryKey: ["live-water"],
+    queryFn: () => fetchLive(),
+    initialData: staticData as unknown as LiveResponse,
+    refetchInterval: 10 * 60 * 1000, // 10 minutes
+    refetchOnWindowFocus: true,
+  });
   const hourly = data.hourly as Hourly[];
-  const daily = data.daily as Array<{
-    date: string; air_temp_c_avg: number | null; water_temp_c_avg: number | null;
-    precip_mm_total: number; enterococcus_mpn_max: number; enterococcus_mpn_avg: number;
-  }>;
+  const daily = data.daily;
 
   const latest = useMemo(() => {
     for (let i = hourly.length - 1; i >= 0; i--) {
