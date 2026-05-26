@@ -110,8 +110,8 @@ function Index() {
                 <XAxis dataKey="t" tick={{ fontSize: 10 }} interval={23} />
                 <YAxis tick={{ fontSize: 10 }} domain={["auto", "auto"]} />
                 <Tooltip />
-                <Line type="monotone" dataKey="water" stroke="#0284c7" dot={false} name="Water" strokeWidth={2} />
-                <Line type="monotone" dataKey="air"   stroke="#f59e0b" dot={false} name="Air"   strokeWidth={2} />
+                <Line type="monotone" dataKey="water" stroke="#0284c7" dot={false} name="Water" strokeWidth={2} connectNulls />
+                <Line type="monotone" dataKey="air"   stroke="#f59e0b" dot={false} name="Air"   strokeWidth={2} connectNulls />
               </LineChart>
             </ResponsiveContainer>
             <div className="mt-3 text-right">
