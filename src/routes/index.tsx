@@ -31,6 +31,7 @@ const statusStyles: Record<string, { label: string; bg: string; text: string; ri
 
 function Index() {
   const fetchLive = useServerFn(getLiveWaterData);
+  const hydrated = useHydrated();
   const { data, dataUpdatedAt, isFetching } = useQuery<LiveResponse>({
     queryKey: ["live-water"],
     queryFn: () => fetchLive(),
