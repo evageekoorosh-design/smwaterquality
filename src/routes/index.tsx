@@ -230,10 +230,10 @@ function Index() {
 
 function Stat({ icon, label, value, sub }: { icon: React.ReactNode; label: string; value: string; sub?: string }) {
   return (
-    <div className="bg-white/15 rounded-lg px-3 py-2 backdrop-blur">
-      <div className="flex items-center justify-center gap-1 text-xs opacity-90">{icon}{label}</div>
-      <div className="text-lg font-semibold leading-tight">{value}</div>
-      {sub && <div className="text-xs opacity-80">{sub}</div>}
+    <div className="bg-white/15 rounded-lg px-2 sm:px-3 py-2 backdrop-blur min-w-0">
+      <div className="flex items-center justify-center gap-1 text-xs opacity-90 whitespace-nowrap">{icon}<span className="truncate">{label}</span></div>
+      <div className="text-base sm:text-lg font-semibold leading-tight whitespace-nowrap">{value}</div>
+      {sub && <div className="text-xs opacity-80 whitespace-nowrap">{sub}</div>}
     </div>
   );
 }
