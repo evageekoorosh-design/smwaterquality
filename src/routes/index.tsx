@@ -77,7 +77,7 @@ function Index() {
           </div>
           <Badge variant="outline" className="hidden sm:inline-flex gap-1.5">
             <span className={`size-1.5 rounded-full ${isFetching ? "bg-amber-500 animate-pulse" : "bg-emerald-500"}`} />
-            Live · updated {new Date(dataUpdatedAt).toLocaleTimeString()}
+            {hydrated ? `Live · updated ${new Date(dataUpdatedAt).toLocaleTimeString()}` : "Live"}
           </Badge>
         </div>
       </header>
