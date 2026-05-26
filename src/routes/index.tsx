@@ -103,6 +103,14 @@ function Index() {
                 <Line type="monotone" dataKey="air"   stroke="#f59e0b" dot={false} name="Air"   strokeWidth={2} />
               </LineChart>
             </ResponsiveContainer>
+            <div className="mt-3 text-right">
+              <Link
+                to="/why-temperature"
+                className="text-xs text-sky-600 hover:text-sky-700 hover:underline transition-colors"
+              >
+                Why beach water temperature matters →
+              </Link>
+            </div>
           </ChartCard>
 
           <ChartCard title="Rainfall" icon={<CloudRain className="size-4" />} subtitle="Hourly precipitation (mm)">

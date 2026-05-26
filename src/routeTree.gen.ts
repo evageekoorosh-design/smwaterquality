@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhyTemperatureRouteImport } from './routes/why-temperature'
 import { Route as BacteriaThresholdsRouteImport } from './routes/bacteria-thresholds'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WhyTemperatureRoute = WhyTemperatureRouteImport.update({
+  id: '/why-temperature',
+  path: '/why-temperature',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BacteriaThresholdsRoute = BacteriaThresholdsRouteImport.update({
   id: '/bacteria-thresholds',
   path: '/bacteria-thresholds',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bacteria-thresholds': typeof BacteriaThresholdsRoute
+  '/why-temperature': typeof WhyTemperatureRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bacteria-thresholds': typeof BacteriaThresholdsRoute
+  '/why-temperature': typeof WhyTemperatureRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/bacteria-thresholds': typeof BacteriaThresholdsRoute
+  '/why-temperature': typeof WhyTemperatureRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/bacteria-thresholds'
+  fullPaths: '/' | '/bacteria-thresholds' | '/why-temperature'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/bacteria-thresholds'
-  id: '__root__' | '/' | '/bacteria-thresholds'
+  to: '/' | '/bacteria-thresholds' | '/why-temperature'
+  id: '__root__' | '/' | '/bacteria-thresholds' | '/why-temperature'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BacteriaThresholdsRoute: typeof BacteriaThresholdsRoute
+  WhyTemperatureRoute: typeof WhyTemperatureRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/why-temperature': {
+      id: '/why-temperature'
+      path: '/why-temperature'
+      fullPath: '/why-temperature'
+      preLoaderRoute: typeof WhyTemperatureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bacteria-thresholds': {
       id: '/bacteria-thresholds'
       path: '/bacteria-thresholds'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BacteriaThresholdsRoute: BacteriaThresholdsRoute,
+  WhyTemperatureRoute: WhyTemperatureRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
