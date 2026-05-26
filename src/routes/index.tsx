@@ -128,7 +128,7 @@ function Index() {
                 to="/why-rainfall"
                 className="text-xs text-sky-600 hover:text-sky-700 hover:underline transition-colors"
               >
-                WHY RAINFALL? →
+                Why Rainfall Matters? →
               </Link>
             </div>
           </ChartCard>
