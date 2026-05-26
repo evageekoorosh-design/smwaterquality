@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo } from "react";
 import data from "@/data/santaMonicaWater.json";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
