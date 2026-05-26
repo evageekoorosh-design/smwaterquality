@@ -29,12 +29,28 @@ function WhyRainfall() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Coming Soon</CardTitle>
+            <CardTitle className="text-base">Rainfall</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-muted-foreground space-y-2">
+          <CardContent className="text-sm text-muted-foreground space-y-4">
             <p>
-              Content about rainfall's impact on beach water quality will be
-              added here.
+              This is the biggest real-world modifier. After a rainstorm, bacteria levels usually exceed state standards for recreational water use due to untreated storm drain flows that may contact motor oil, pet waste, pesticides, and trash. Beachapedia
+            </p>
+            <p>
+              California actually has a standing advisory system built around this:
+            </p>
+            <div className="space-y-2 pl-4 border-l-2 border-sky-200">
+              <p>
+                Most coastal counties automatically post rain advisories at beaches near storm drains after significant rainfall (typically ≥0.1 inches in 24 hours), without even waiting for test results
+              </p>
+              <p>
+                The standard guidance is to avoid ocean contact for 72 hours after rain near storm drains and creek mouths
+              </p>
+              <p>
+                This is essentially an implicit, temporary lowering of the "safe" threshold — officials treat the water as unsafe preemptively
+              </p>
+            </div>
+            <p>
+              So for your tracker, rainfall isn't just a correlating metric — it's operationally used as a proxy closure trigger independent of measured bacteria levels.
             </p>
           </CardContent>
         </Card>
