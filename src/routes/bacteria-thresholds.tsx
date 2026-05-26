@@ -36,6 +36,14 @@ function BacteriaThresholds() {
           </p>
         </div>
 
+        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          Bacteria values are now synthesized with realistic baseline noise
+          (5–18 MPN) plus rain-correlated spikes that decay over the 72-hour
+          storm-drain advisory window — so dry weeks stay low and post-rain
+          hours actually climb (potentially into caution/unsafe territory if
+          rainfall ≥0.1mm hits).
+        </div>
+
         {/* The Core Numbers */}
         <Card>
           <CardHeader>
