@@ -51,7 +51,7 @@ function Index() {
   }, [hourly]);
 
   const chartData = hourly.map(h => ({
-    t: new Date(h.time).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric" }),
+    t: new Date(h.time).toLocaleString(undefined, { month: "short", day: "numeric" }),
     air: h.air_temp_c,
     water: h.water_temp_c,
     precip: h.precip_mm ?? 0,
@@ -105,9 +105,9 @@ function Index() {
         <div className="grid lg:grid-cols-2 gap-6">
           <ChartCard title="Temperature" icon={<Thermometer className="size-4" />} subtitle="Hourly air & water (°C)">
             <ResponsiveContainer width="100%" height={240}>
-              <LineChart data={chartData} margin={{ left: -10, right: 8, top: 8, bottom: 0 }}>
+              <LineChart data={chartData} margin={{ left: -10, right: 8, top: 8, bottom: 25 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#eef2f7" />
-                <XAxis dataKey="t" tick={{ fontSize: 10 }} interval={23} />
+                <XAxis dataKey="t" tick={{ fontSize: 10 }} interval={23} angle={-30} textAnchor="end" height={40} />
                 <YAxis tick={{ fontSize: 10 }} domain={["auto", "auto"]} />
                 <Tooltip />
                 <Line type="monotone" dataKey="water" stroke="#0284c7" dot={false} name="Water" strokeWidth={2} connectNulls />
@@ -126,9 +126,9 @@ function Index() {
 
           <ChartCard title="Rainfall" icon={<CloudRain className="size-4" />} subtitle="Hourly precipitation (mm)">
             <ResponsiveContainer width="100%" height={240}>
-              <BarChart data={chartData} margin={{ left: -10, right: 8, top: 8, bottom: 0 }}>
+              <BarChart data={chartData} margin={{ left: -10, right: 8, top: 8, bottom: 25 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#eef2f7" />
-                <XAxis dataKey="t" tick={{ fontSize: 10 }} interval={23} />
+                <XAxis dataKey="t" tick={{ fontSize: 10 }} interval={23} angle={-30} textAnchor="end" height={40} />
                 <YAxis tick={{ fontSize: 10 }} />
                 <Tooltip />
                 <Bar dataKey="precip" fill="#0ea5e9" />
@@ -151,9 +151,9 @@ function Index() {
             full
           >
             <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={chartData} margin={{ left: -10, right: 8, top: 8, bottom: 0 }}>
+              <LineChart data={chartData} margin={{ left: -10, right: 8, top: 8, bottom: 25 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#eef2f7" />
-                <XAxis dataKey="t" tick={{ fontSize: 10 }} interval={23} />
+                <XAxis dataKey="t" tick={{ fontSize: 10 }} interval={23} angle={-30} textAnchor="end" height={40} />
                 <YAxis tick={{ fontSize: 10 }} />
                 <Tooltip />
                 <ReferenceLine y={104} stroke="#e11d48" strokeDasharray="4 4" label={{ value: "Unsafe", fontSize: 10, fill: "#e11d48" }} />
