@@ -1,6 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo } from "react";
-import data from "@/data/santaMonicaWater.json";
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { useHydrated } from "@tanstack/react-router";
+import staticData from "@/data/santaMonicaWater.json";
+import { getLiveWaterData, type LiveResponse } from "@/lib/liveWater.functions";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -26,11 +30,17 @@ const statusStyles: Record<string, { label: string; bg: string; text: string; ri
 };
 
 function Index() {
+  const fetchLive = useServerFn(getLiveWaterData);
+  const hydrated = useHydrated();
+  const { data, dataUpdatedAt, isFetching } = useQuery<LiveResponse>({
+    queryKey: ["live-water"],
+    queryFn: () => fetchLive(),
+    initialData: staticData as unknown as LiveResponse,
+    refetchInterval: 10 * 60 * 1000, // 10 minutes
+    refetchOnWindowFocus: true,
+  });
   const hourly = data.hourly as Hourly[];
-  const daily = data.daily as Array<{
-    date: string; air_temp_c_avg: number | null; water_temp_c_avg: number | null;
-    precip_mm_total: number; enterococcus_mpn_max: number; enterococcus_mpn_avg: number;
-  }>;
+  const daily = data.daily;
 
   const latest = useMemo(() => {
     for (let i = hourly.length - 1; i >= 0; i--) {
@@ -65,8 +75,9 @@ function Index() {
               </p>
             </div>
           </div>
-          <Badge variant="outline" className="hidden sm:inline-flex">
-            Last 7 days · generated {data.generated_at.slice(0, 16).replace("T", " ")} UTC
+          <Badge variant="outline" className="hidden sm:inline-flex gap-1.5">
+            <span className={`size-1.5 rounded-full ${isFetching ? "bg-amber-500 animate-pulse" : "bg-emerald-500"}`} />
+            {hydrated ? `Live · updated ${new Date(dataUpdatedAt).toLocaleTimeString()}` : "Live"}
           </Badge>
         </div>
       </header>
