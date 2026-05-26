@@ -51,7 +51,7 @@ function Index() {
   }, [hourly]);
 
   const chartData = hourly.map(h => ({
-    t: new Date(h.time).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric" }),
+    t: new Date(h.time).toLocaleString(undefined, { month: "short", day: "numeric" }),
     air: h.air_temp_c,
     water: h.water_temp_c,
     precip: h.precip_mm ?? 0,
