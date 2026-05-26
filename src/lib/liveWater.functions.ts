@@ -10,12 +10,21 @@ export type Hourly = {
   status: "safe" | "caution" | "unsafe";
 };
 
+export type Daily = {
+  date: string;
+  air_temp_c_avg: number | null;
+  water_temp_c_avg: number | null;
+  precip_mm_total: number;
+  enterococcus_mpn_max: number;
+  enterococcus_mpn_avg: number;
+};
+
 export type LiveResponse = {
   station: typeof staticData.station;
   generated_at: string;
   notes: typeof staticData.notes;
   hourly: Hourly[];
-  daily: typeof staticData.daily;
+  daily: Daily[];
   live: boolean;
   source_status: { ndbc: "ok" | "error"; openmeteo: "ok" | "error" };
 };
