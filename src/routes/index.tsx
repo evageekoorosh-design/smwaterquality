@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useServerFn, useHydrated } from "@tanstack/react-start";
+import { useServerFn } from "@tanstack/react-start";
+import { useHydrated } from "@tanstack/react-router";
 import staticData from "@/data/santaMonicaWater.json";
 import { getLiveWaterData, type LiveResponse } from "@/lib/liveWater.functions";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
