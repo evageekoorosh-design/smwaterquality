@@ -123,6 +123,14 @@ function Index() {
                 <Bar dataKey="precip" fill="#0ea5e9" />
               </BarChart>
             </ResponsiveContainer>
+            <div className="mt-3 text-right">
+              <Link
+                to="/why-rainfall"
+                className="text-xs text-sky-600 hover:text-sky-700 hover:underline transition-colors"
+              >
+                WHY RAINFALL? →
+              </Link>
+            </div>
           </ChartCard>
 
           <ChartCard
