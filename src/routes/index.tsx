@@ -151,9 +151,9 @@ function Index() {
             full
           >
             <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={chartData} margin={{ left: -10, right: 8, top: 8, bottom: 25 }}>
+              <LineChart data={chartData} margin={{ left: -10, right: 8, top: 8, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#eef2f7" />
-                <XAxis dataKey="t" tick={{ fontSize: 10 }} interval={23} angle={-30} textAnchor="end" height={40} />
+                <XAxis dataKey="t" tick={{ fontSize: 10 }} interval={23} />
                 <YAxis tick={{ fontSize: 10 }} />
                 <Tooltip />
                 <ReferenceLine y={104} stroke="#e11d48" strokeDasharray="4 4" label={{ value: "Unsafe", fontSize: 10, fill: "#e11d48" }} />
