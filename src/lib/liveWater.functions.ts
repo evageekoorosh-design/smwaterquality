@@ -103,12 +103,36 @@ export const getLiveWaterData = createServerFn({ method: "GET" }).handler(
       (staticData.hourly as Hourly[]).map((h) => [h.time, h]),
     );
 
-    const hourly: Hourly[] = hours.map((time) => {
+    // Deterministic pseudo-random (so values are stable for a given hour, not jumpy each refetch)
+    const seeded = (key: string) => {
+      let h = 2166136261;
+      for (let i = 0; i < key.length; i++) h = Math.imul(h ^ key.charCodeAt(i), 16777619);
+      return ((h >>> 0) % 10000) / 10000;
+    };
+
+    // Precompute cumulative rainfall in the prior 72h for each hour (storm-drain advisory window)
+    const precipByHour = new Map<string, number>();
+    for (const t of hours) precipByHour.set(t, precip.get(t) ?? 0);
+
+    const hourly: Hourly[] = hours.map((time, idx) => {
       const live = ndbc.get(time);
       const p = precip.get(time);
-      // Bacteria stays prototype/static. Use last known static reading if outside window.
       const fallback = staticByTime.get(time);
-      const mpn = fallback?.enterococcus_mpn ?? 8;
+
+      // Sum rainfall in trailing 72h
+      let rain72 = 0;
+      for (let j = Math.max(0, idx - 71); j <= idx; j++) {
+        rain72 += precipByHour.get(hours[j]) ?? 0;
+      }
+
+      // Synthetic Enterococcus (MPN/100mL):
+      //   - baseline 4-15 with diurnal noise
+      //   - spike that decays exponentially over ~72h after rain ≥0.1mm
+      const r = seeded(time);
+      const baseline = 5 + r * 10;
+      const rainSpike = rain72 >= 0.1 ? rain72 * 35 * Math.exp(-((idx % 72) / 36)) : 0;
+      const mpn = Math.round((baseline + rainSpike + r * 3) * 10) / 10;
+
       return {
         time,
         air_temp_c: live?.air ?? fallback?.air_temp_c ?? null,
