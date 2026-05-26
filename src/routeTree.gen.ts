@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as BacteriaThresholdsRouteImport } from './routes/bacteria-thresholds'
 import { Route as IndexRouteImport } from './routes/index'
 
+const BacteriaThresholdsRoute = BacteriaThresholdsRouteImport.update({
+  id: '/bacteria-thresholds',
+  path: '/bacteria-thresholds',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bacteria-thresholds': typeof BacteriaThresholdsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bacteria-thresholds': typeof BacteriaThresholdsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bacteria-thresholds': typeof BacteriaThresholdsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/bacteria-thresholds'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/bacteria-thresholds'
+  id: '__root__' | '/' | '/bacteria-thresholds'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BacteriaThresholdsRoute: typeof BacteriaThresholdsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/bacteria-thresholds': {
+      id: '/bacteria-thresholds'
+      path: '/bacteria-thresholds'
+      fullPath: '/bacteria-thresholds'
+      preLoaderRoute: typeof BacteriaThresholdsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +70,18 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BacteriaThresholdsRoute: BacteriaThresholdsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

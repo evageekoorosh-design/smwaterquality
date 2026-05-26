@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo } from "react";
 import data from "@/data/santaMonicaWater.json";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -134,6 +134,14 @@ function Index() {
                 <Line type="monotone" dataKey="bact" stroke="#0f766e" dot={false} strokeWidth={2} />
               </LineChart>
             </ResponsiveContainer>
+            <div className="mt-3 text-right">
+              <Link
+                to="/bacteria-thresholds"
+                className="text-xs text-sky-600 hover:text-sky-700 hover:underline transition-colors"
+              >
+                Why California's Beach Bacteria Thresholds Differ →
+              </Link>
+            </div>
           </ChartCard>
         </div>
 
