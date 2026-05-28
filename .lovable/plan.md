@@ -1,84 +1,42 @@
-## Goal
+## Per-beach NOAA stations + El Porto rename + station fallback
 
-Turn the current Santa Monica dashboard into a per-beach detail page, and add a new landing page at `/` showing preview cards for a handful of LA-area beaches. Visitors click a card → detail page.
+### 1. `src/data/beaches.ts` — real stations per beach
 
-## Beaches (LA-area set)
+Update the `ndbcStation` for each beach and rename Manhattan Beach card to El Porto:
 
-Each beach gets a slug, display name, and a nearest NOAA station for air/water temp + precipitation:
+| Slug | Name | Station |
+|---|---|---|
+| `santa-monica` | Santa Monica Pier | `ICAC1` |
+| `venice` | Venice Beach | `ICAC1` |
+| `malibu-surfrider` | Malibu Surfrider | `SMOC1` |
+| `manhattan-beach` | **El Porto, Manhattan Beach** | `46221` |
+| `hermosa-beach` | Hermosa Beach | `46221` |
+| `redondo-beach` | Redondo Beach | `RDNC1` |
 
-- `santa-monica` — Santa Monica Pier (current station, keep as-is)
-- `venice` — Venice Beach
-- `malibu-surfrider` — Malibu Surfrider
-- `manhattan-beach` — Manhattan Beach
-- `hermosa-beach` — Hermosa Beach
-- `redondo-beach` — Redondo Beach
+Slug stays `manhattan-beach` (no URL break); only `name` changes to `"El Porto, Manhattan Beach"`. `location` stays `"Manhattan Beach, CA"`.
 
-Bacteria values stay synthesized (same rain-correlated model already in `liveWater.functions.ts`), seeded per-beach so each card shows a different but plausible value.
+### 2. `src/lib/liveWater.functions.ts` — station fallback chain
 
-## Routes
+Add an optional `fallbackStations: string[]` field per beach (in `beaches.ts`) and pass it to `getLiveWaterData`.
 
-```
-src/routes/
-  index.tsx                  -> NEW landing page (beach grid)
-  beach.$slug.tsx            -> moved current dashboard, reads slug
-  bacteria-thresholds.tsx    -> unchanged
-  why-rainfall.tsx           -> unchanged
-  why-temperature.tsx        -> unchanged
-```
+In the handler:
+- Try primary `stationId` first
+- If the NDBC realtime2 response is missing/empty or all recent hours have null `air_temp_c` and `water_temp_c`, walk through `fallbackStations` in order
+- Use whichever returns usable readings; surface the actual station used in `station.id` / `station.name` so the detail page header reflects reality
+- If all fail, return nulls (existing behavior) — cards already show "—"
 
-`/` → landing. `/beach/santa-monica` → current dashboard view. Unknown slug → notFound.
+Fallback chains:
+- `SMOC1` → `[ICAC1]`
+- `RDNC1` → `[46221, ICAC1]`
+- `46221` → `[ICAC1]`
+- `ICAC1` → `[SMOC1]`
 
-## Landing page
+### 3. Rainfall — unchanged
 
-Hero header (site title + tagline), then a responsive grid of **beach preview cards**. Each card shows:
+Open-Meteo already uses per-beach `lat`/`lon`, so rainfall is already accurate per location.
 
-- Colored status bar (Safe / Caution / Unsafe) using existing `statusStyles`
-- Beach name + short location line
-- Three compact stats: Water temp, Bacteria MPN, Last 1h rain
-- Subtle "View details →" affordance
-- Whole card is a `<Link to="/beach/$slug" params={{ slug }}>`
+### Out of scope
 
-Favorites (localStorage, no login):
-- Star icon in the top-right of each card toggles favorite
-- Favorited beaches render in a "⭐ Favorites" section pinned above the rest
-- Stored as `string[]` under `beach-favorites` key; hydration-safe (read in `useEffect`)
-
-Below the grid: small footer with data sources blurb (reuse copy from current page).
-
-## Detail page (`/beach/$slug.tsx`)
-
-- Same layout as current `index.tsx`
-- Reads `slug` via `Route.useParams()`, looks up beach metadata, calls `getLiveWaterData({ stationId, seed: slug })`
-- Back link to `/` in the header ("← All beaches")
-- 404 via `notFoundComponent` if slug unknown
-- `head()` sets per-beach title/description/og tags
-
-## Server function changes
-
-`src/lib/liveWater.functions.ts`:
-- Accept optional `{ stationId?: string, seed?: string }` input via `inputValidator`
-- Default to current Santa Monica station when omitted
-- Use `seed` to make the synthesized bacteria noise deterministic per beach (so cards don't flicker between refreshes)
-- Return same `LiveResponse` shape; `station.name` reflects the requested beach
-
-Landing page fetches all 6 beaches in parallel using `useQueries` with a 10-min refetch interval (same cadence as today).
-
-## Shared pieces
-
-- `src/data/beaches.ts` — array of beach metadata (slug, name, stationId, location label)
-- `src/components/BeachCard.tsx` — preview card used on landing
-- `src/hooks/useFavorites.ts` — localStorage favorites hook (SSR-safe)
-
-## Technical notes
-
-- TanStack Router file convention: `beach.$slug.tsx` → `/beach/$slug`, `createFileRoute("/beach/$slug")`
-- Keep `defaultPreloadStaleTime: 0` so React Query owns freshness
-- Detail page loader stays client-side (`useQuery` in component) to avoid SSR'ing 6 stations on the landing page; landing uses `useQueries` client-side too
-- All new color usage goes through existing `statusStyles` tokens — no raw color classes added
-- No backend/auth needed; favorites are localStorage only
-
-## Out of scope
-
-- Real bacteria measurements (still synthesized)
-- User accounts / cloud-synced favorites
-- Adding/removing beaches from the UI (the list is hardcoded in `beaches.ts`)
+- Changing the slug `manhattan-beach` (would break any existing links/bookmarks)
+- Adding more beaches
+- Caching station-health results between requests
