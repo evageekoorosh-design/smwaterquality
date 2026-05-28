@@ -76,7 +76,7 @@ function BeachDetail() {
   const fetchLive = useServerFn(getLiveWaterData);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  const { data, dataUpdatedAt, isFetching } = useQuery<LiveResponse>({
+  const { data, dataUpdatedAt, isFetching, isLoading } = useQuery<LiveResponse>({
     queryKey: ["live-water", beach.slug],
     queryFn: () => fetchLive({
       data: {
@@ -91,6 +91,16 @@ function BeachDetail() {
     refetchInterval: 10 * 60 * 1000,
     refetchOnWindowFocus: true,
   });
+
+  if (!data) {
+    return (
+      <div className="min-h-screen grid place-items-center text-sm text-muted-foreground">
+        Loading {beach.name}…
+      </div>
+    );
+  }
+
+
   const hourly = data.hourly as Hourly[];
   const daily = data.daily;
 
