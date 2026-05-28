@@ -200,8 +200,8 @@ export const getLiveWaterData = createServerFn({ method: "GET" })
     });
 
     const station = data.beachName
-      ? { ...staticData.station, name: data.beachName, id: stationId }
-      : staticData.station;
+      ? { ...staticData.station, name: data.beachName, id: usedStation }
+      : { ...staticData.station, id: usedStation };
 
     return {
       station,
