@@ -13,6 +13,7 @@ import { Route as WhyTemperatureRouteImport } from './routes/why-temperature'
 import { Route as WhyRainfallRouteImport } from './routes/why-rainfall'
 import { Route as BacteriaThresholdsRouteImport } from './routes/bacteria-thresholds'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BeachSlugRouteImport } from './routes/beach.$slug'
 
 const WhyTemperatureRoute = WhyTemperatureRouteImport.update({
   id: '/why-temperature',
@@ -34,18 +35,25 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BeachSlugRoute = BeachSlugRouteImport.update({
+  id: '/beach/$slug',
+  path: '/beach/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bacteria-thresholds': typeof BacteriaThresholdsRoute
   '/why-rainfall': typeof WhyRainfallRoute
   '/why-temperature': typeof WhyTemperatureRoute
+  '/beach/$slug': typeof BeachSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bacteria-thresholds': typeof BacteriaThresholdsRoute
   '/why-rainfall': typeof WhyRainfallRoute
   '/why-temperature': typeof WhyTemperatureRoute
+  '/beach/$slug': typeof BeachSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,18 +61,30 @@ export interface FileRoutesById {
   '/bacteria-thresholds': typeof BacteriaThresholdsRoute
   '/why-rainfall': typeof WhyRainfallRoute
   '/why-temperature': typeof WhyTemperatureRoute
+  '/beach/$slug': typeof BeachSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/bacteria-thresholds' | '/why-rainfall' | '/why-temperature'
+  fullPaths:
+    | '/'
+    | '/bacteria-thresholds'
+    | '/why-rainfall'
+    | '/why-temperature'
+    | '/beach/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/bacteria-thresholds' | '/why-rainfall' | '/why-temperature'
+  to:
+    | '/'
+    | '/bacteria-thresholds'
+    | '/why-rainfall'
+    | '/why-temperature'
+    | '/beach/$slug'
   id:
     | '__root__'
     | '/'
     | '/bacteria-thresholds'
     | '/why-rainfall'
     | '/why-temperature'
+    | '/beach/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -72,6 +92,7 @@ export interface RootRouteChildren {
   BacteriaThresholdsRoute: typeof BacteriaThresholdsRoute
   WhyRainfallRoute: typeof WhyRainfallRoute
   WhyTemperatureRoute: typeof WhyTemperatureRoute
+  BeachSlugRoute: typeof BeachSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -104,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/beach/$slug': {
+      id: '/beach/$slug'
+      path: '/beach/$slug'
+      fullPath: '/beach/$slug'
+      preLoaderRoute: typeof BeachSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -112,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   BacteriaThresholdsRoute: BacteriaThresholdsRoute,
   WhyRainfallRoute: WhyRainfallRoute,
   WhyTemperatureRoute: WhyTemperatureRoute,
+  BeachSlugRoute: BeachSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
