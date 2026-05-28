@@ -76,7 +76,7 @@ function BeachDetail() {
   const fetchLive = useServerFn(getLiveWaterData);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  const { data, dataUpdatedAt, isFetching, isLoading } = useQuery<LiveResponse>({
+  const { data, dataUpdatedAt, isFetching } = useQuery<LiveResponse>({
     queryKey: ["live-water", beach.slug],
     queryFn: () => fetchLive({
       data: {
