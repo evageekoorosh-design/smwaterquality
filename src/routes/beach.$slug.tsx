@@ -87,7 +87,7 @@ function BeachDetail() {
         beachName: beach.name,
       },
     }),
-    initialData: (slug === "santa-monica" ? (staticData as unknown as LiveResponse) : undefined) as LiveResponse,
+    initialData: slug === "santa-monica" ? (staticData as unknown as LiveResponse) : undefined,
     refetchInterval: 10 * 60 * 1000,
     refetchOnWindowFocus: true,
   });
