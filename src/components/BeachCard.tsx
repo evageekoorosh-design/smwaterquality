@@ -28,6 +28,7 @@ export function BeachCard({
       fetchLive({
         data: {
           stationId: beach.ndbcStation,
+          fallbackStations: beach.fallbackStations,
           lat: beach.lat,
           lon: beach.lon,
           seed: beach.slug,

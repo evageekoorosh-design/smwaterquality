@@ -78,26 +78,57 @@ async function fetchPrecip(lat: number, lon: number): Promise<Map<string, number
 
 export type LiveInput = {
   stationId?: string;
+  fallbackStations?: string[];
   lat?: number;
   lon?: number;
   seed?: string;
   beachName?: string;
 };
 
+function hasUsableReadings(m: Map<string, { air: number | null; water: number | null }>): boolean {
+  if (m.size === 0) return false;
+  // Consider usable if any of the last 24 entries has a non-null reading.
+  const entries = Array.from(m.values()).slice(-24);
+  return entries.some((e) => e.air !== null || e.water !== null);
+}
+
 export const getLiveWaterData = createServerFn({ method: "GET" })
   .inputValidator((data?: LiveInput) => data ?? {})
   .handler(async ({ data }): Promise<LiveResponse> => {
-    const stationId = data.stationId ?? DEFAULT_STATION;
+    const primaryStation = data.stationId ?? DEFAULT_STATION;
+    const stationChain = [primaryStation, ...(data.fallbackStations ?? [])];
     const lat = data.lat ?? DEFAULT_LAT;
     const lon = data.lon ?? DEFAULT_LON;
     const seedKey = data.seed ?? "default";
     const sourceStatus = { ndbc: "ok", openmeteo: "ok" } as LiveResponse["source_status"];
 
-    const [ndbcRes, precipRes] = await Promise.allSettled([fetchNdbc(stationId), fetchPrecip(lat, lon)]);
-    const ndbc = ndbcRes.status === "fulfilled" ? ndbcRes.value : new Map();
-    if (ndbcRes.status === "rejected") sourceStatus.ndbc = "error";
-    const precip = precipRes.status === "fulfilled" ? precipRes.value : new Map();
-    if (precipRes.status === "rejected") sourceStatus.openmeteo = "error";
+    // Try each station in order; use the first that returns usable readings.
+    let ndbc: Map<string, { air: number | null; water: number | null }> = new Map();
+    let usedStation = primaryStation;
+    let anyNdbcSuccess = false;
+    for (const sid of stationChain) {
+      try {
+        const result = await fetchNdbc(sid);
+        anyNdbcSuccess = true;
+        if (hasUsableReadings(result)) {
+          ndbc = result;
+          usedStation = sid;
+          break;
+        }
+        // Keep first successful (even if empty) as a baseline.
+        if (ndbc.size === 0) {
+          ndbc = result;
+          usedStation = sid;
+        }
+      } catch {
+        // try next
+      }
+    }
+    if (!anyNdbcSuccess) sourceStatus.ndbc = "error";
+
+    const precipRes = await Promise.allSettled([fetchPrecip(lat, lon)]);
+    const precip = precipRes[0].status === "fulfilled" ? precipRes[0].value : new Map<string, number>();
+    if (precipRes[0].status === "rejected") sourceStatus.openmeteo = "error";
 
     const now = new Date();
     now.setUTCMinutes(0, 0, 0);
@@ -169,8 +200,8 @@ export const getLiveWaterData = createServerFn({ method: "GET" })
     });
 
     const station = data.beachName
-      ? { ...staticData.station, name: data.beachName, id: stationId }
-      : staticData.station;
+      ? { ...staticData.station, name: data.beachName, id: usedStation }
+      : { ...staticData.station, id: usedStation };
 
     return {
       station,

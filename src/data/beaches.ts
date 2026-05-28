@@ -4,9 +4,10 @@ export type Beach = {
   location: string;
   lat: number;
   lon: number;
-  // NDBC realtime2 station for air/water temp. Many LA beaches don't have
-  // their own station, so we share the nearest Santa Monica Bay station.
+  // Primary NDBC realtime2 station for air/water temp.
   ndbcStation: string;
+  // Stations to try in order if the primary returns no usable readings.
+  fallbackStations?: string[];
 };
 
 export const BEACHES: Beach[] = [
@@ -17,6 +18,7 @@ export const BEACHES: Beach[] = [
     lat: 34.008,
     lon: -118.499,
     ndbcStation: "ICAC1",
+    fallbackStations: ["SMOC1"],
   },
   {
     slug: "venice",
@@ -25,6 +27,7 @@ export const BEACHES: Beach[] = [
     lat: 33.985,
     lon: -118.473,
     ndbcStation: "ICAC1",
+    fallbackStations: ["SMOC1"],
   },
   {
     slug: "malibu-surfrider",
@@ -32,15 +35,17 @@ export const BEACHES: Beach[] = [
     location: "Malibu, CA",
     lat: 34.034,
     lon: -118.679,
-    ndbcStation: "ICAC1",
+    ndbcStation: "SMOC1",
+    fallbackStations: ["ICAC1"],
   },
   {
     slug: "manhattan-beach",
-    name: "Manhattan Beach",
+    name: "El Porto, Manhattan Beach",
     location: "Manhattan Beach, CA",
     lat: 33.884,
     lon: -118.411,
-    ndbcStation: "ICAC1",
+    ndbcStation: "46221",
+    fallbackStations: ["ICAC1"],
   },
   {
     slug: "hermosa-beach",
@@ -48,7 +53,8 @@ export const BEACHES: Beach[] = [
     location: "Hermosa Beach, CA",
     lat: 33.862,
     lon: -118.401,
-    ndbcStation: "ICAC1",
+    ndbcStation: "46221",
+    fallbackStations: ["ICAC1"],
   },
   {
     slug: "redondo-beach",
@@ -56,7 +62,8 @@ export const BEACHES: Beach[] = [
     location: "Redondo Beach, CA",
     lat: 33.842,
     lon: -118.391,
-    ndbcStation: "ICAC1",
+    ndbcStation: "RDNC1",
+    fallbackStations: ["46221", "ICAC1"],
   },
 ];
 
