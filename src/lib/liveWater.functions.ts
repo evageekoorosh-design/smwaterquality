@@ -29,9 +29,9 @@ export type LiveResponse = {
   source_status: { ndbc: "ok" | "error"; openmeteo: "ok" | "error" };
 };
 
-const STATION = "ICAC1";
-const LAT = 34.008;
-const LON = -118.499;
+const DEFAULT_STATION = "ICAC1";
+const DEFAULT_LAT = 34.008;
+const DEFAULT_LON = -118.499;
 
 function classify(mpn: number): "safe" | "caution" | "unsafe" {
   if (mpn > 104) return "unsafe";
@@ -39,23 +39,20 @@ function classify(mpn: number): "safe" | "caution" | "unsafe" {
   return "safe";
 }
 
-// Parse NDBC realtime2 .txt — space-separated, two header lines starting with '#'.
-async function fetchNdbc(): Promise<Map<string, { air: number | null; water: number | null }>> {
-  const res = await fetch(`https://www.ndbc.noaa.gov/data/realtime2/${STATION}.txt`, {
+async function fetchNdbc(stationId: string): Promise<Map<string, { air: number | null; water: number | null }>> {
+  const res = await fetch(`https://www.ndbc.noaa.gov/data/realtime2/${stationId}.txt`, {
     headers: { "User-Agent": "beach-water-tracker" },
   });
   if (!res.ok) throw new Error(`NDBC ${res.status}`);
   const text = await res.text();
   const lines = text.split("\n").filter((l) => l && !l.startsWith("#"));
   const out = new Map<string, { air: number | null; water: number | null }>();
-  // Columns: YY MM DD hh mm WDIR WSPD GST WVHT DPD APD MWD PRES ATMP WTMP ...
   for (const line of lines) {
     const c = line.trim().split(/\s+/);
     if (c.length < 15) continue;
-    const [yy, mm, dd, hh, mn] = c;
+    const [yy, mm, dd, hh] = c;
     const atmp = parseFloat(c[13]);
     const wtmp = parseFloat(c[14]);
-    // Bucket to the hour (drop minutes)
     const iso = `${yy}-${mm}-${dd}T${hh}:00:00Z`;
     if (!out.has(iso)) {
       out.set(iso, {
@@ -67,30 +64,41 @@ async function fetchNdbc(): Promise<Map<string, { air: number | null; water: num
   return out;
 }
 
-async function fetchPrecip(): Promise<Map<string, number>> {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&hourly=precipitation&past_days=7&forecast_days=1&timezone=UTC`;
+async function fetchPrecip(lat: number, lon: number): Promise<Map<string, number>> {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=precipitation&past_days=7&forecast_days=1&timezone=UTC`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Open-Meteo ${res.status}`);
   const json = (await res.json()) as { hourly: { time: string[]; precipitation: number[] } };
   const out = new Map<string, number>();
   json.hourly.time.forEach((t, i) => {
-    // open-meteo returns "2026-05-19T23:00" (UTC); normalize to ISO with seconds + Z
     out.set(`${t}:00Z`, json.hourly.precipitation[i] ?? 0);
   });
   return out;
 }
 
-export const getLiveWaterData = createServerFn({ method: "GET" }).handler(
-  async (): Promise<LiveResponse> => {
+export type LiveInput = {
+  stationId?: string;
+  lat?: number;
+  lon?: number;
+  seed?: string;
+  beachName?: string;
+};
+
+export const getLiveWaterData = createServerFn({ method: "GET" })
+  .inputValidator((data?: LiveInput) => data ?? {})
+  .handler(async ({ data }): Promise<LiveResponse> => {
+    const stationId = data.stationId ?? DEFAULT_STATION;
+    const lat = data.lat ?? DEFAULT_LAT;
+    const lon = data.lon ?? DEFAULT_LON;
+    const seedKey = data.seed ?? "default";
     const sourceStatus = { ndbc: "ok", openmeteo: "ok" } as LiveResponse["source_status"];
 
-    const [ndbcRes, precipRes] = await Promise.allSettled([fetchNdbc(), fetchPrecip()]);
+    const [ndbcRes, precipRes] = await Promise.allSettled([fetchNdbc(stationId), fetchPrecip(lat, lon)]);
     const ndbc = ndbcRes.status === "fulfilled" ? ndbcRes.value : new Map();
     if (ndbcRes.status === "rejected") sourceStatus.ndbc = "error";
     const precip = precipRes.status === "fulfilled" ? precipRes.value : new Map();
     if (precipRes.status === "rejected") sourceStatus.openmeteo = "error";
 
-    // Build trailing 7-day hourly window ending at current hour (UTC)
     const now = new Date();
     now.setUTCMinutes(0, 0, 0);
     const hours: string[] = [];
@@ -103,14 +111,13 @@ export const getLiveWaterData = createServerFn({ method: "GET" }).handler(
       (staticData.hourly as Hourly[]).map((h) => [h.time, h]),
     );
 
-    // Deterministic pseudo-random (so values are stable for a given hour, not jumpy each refetch)
     const seeded = (key: string) => {
       let h = 2166136261;
-      for (let i = 0; i < key.length; i++) h = Math.imul(h ^ key.charCodeAt(i), 16777619);
+      const k = seedKey + "|" + key;
+      for (let i = 0; i < k.length; i++) h = Math.imul(h ^ k.charCodeAt(i), 16777619);
       return ((h >>> 0) % 10000) / 10000;
     };
 
-    // Precompute cumulative rainfall in the prior 72h for each hour (storm-drain advisory window)
     const precipByHour = new Map<string, number>();
     for (const t of hours) precipByHour.set(t, precip.get(t) ?? 0);
 
@@ -119,15 +126,11 @@ export const getLiveWaterData = createServerFn({ method: "GET" }).handler(
       const p = precip.get(time);
       const fallback = staticByTime.get(time);
 
-      // Sum rainfall in trailing 72h
       let rain72 = 0;
       for (let j = Math.max(0, idx - 71); j <= idx; j++) {
         rain72 += precipByHour.get(hours[j]) ?? 0;
       }
 
-      // Synthetic Enterococcus (MPN/100mL):
-      //   - baseline 4-15 with diurnal noise
-      //   - spike that decays exponentially over ~72h after rain ≥0.1mm
       const r = seeded(time);
       const baseline = 5 + r * 10;
       const rainSpike = rain72 >= 0.1 ? rain72 * 35 * Math.exp(-((idx % 72) / 36)) : 0;
@@ -143,7 +146,6 @@ export const getLiveWaterData = createServerFn({ method: "GET" }).handler(
       };
     });
 
-    // Recompute daily summary from hourly
     const byDay = new Map<string, Hourly[]>();
     for (const h of hourly) {
       const day = h.time.slice(0, 10);
@@ -166,8 +168,12 @@ export const getLiveWaterData = createServerFn({ method: "GET" }).handler(
       };
     });
 
+    const station = data.beachName
+      ? { ...staticData.station, name: data.beachName, id: stationId }
+      : staticData.station;
+
     return {
-      station: staticData.station,
+      station,
       generated_at: new Date().toISOString(),
       notes: staticData.notes,
       hourly,
@@ -175,5 +181,4 @@ export const getLiveWaterData = createServerFn({ method: "GET" }).handler(
       live: true,
       source_status: sourceStatus,
     };
-  },
-);
+  });
