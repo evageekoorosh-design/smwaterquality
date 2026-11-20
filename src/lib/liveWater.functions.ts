@@ -27,6 +27,7 @@ export type LiveResponse = {
   daily: Daily[];
   live: boolean;
   source_status: { ndbc: "ok" | "error"; openmeteo: "ok" | "error" };
+  precip_debug?: string;
 };
 
 const DEFAULT_STATION = "ICAC1";
@@ -69,7 +70,7 @@ async function fetchPrecip(lat: number, lon: number): Promise<Map<string, number
   const res = await fetch(url, {
     headers: { "User-Agent": "beach-water-tracker" },
   });
-  if (!res.ok) throw new Error(`Open-Meteo ${res.status}`);
+  if (!res.ok) throw new Error(`Open-Meteo ${res.status}: ${(await res.text()).slice(0, 200)}`);
   const json = (await res.json()) as { hourly: { time: string[]; precipitation: number[] } };
   const out = new Map<string, number>();
   json.hourly.time.forEach((t, i) => {
@@ -99,12 +100,14 @@ async function fetchPrecipNws(): Promise<Map<string, number>> {
   return out;
 }
 
+let lastPrecipError = "";
+
 async function fetchPrecipWithFallback(lat: number, lon: number): Promise<Map<string, number>> {
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
       return await fetchPrecip(lat, lon);
-    } catch {
-      // retry, then fall back
+    } catch (e) {
+      lastPrecipError = e instanceof Error ? e.message : String(e);
     }
   }
   return fetchPrecipNws();
@@ -245,5 +248,6 @@ export const getLiveWaterData = createServerFn({ method: "GET" })
       daily,
       live: true,
       source_status: sourceStatus,
+      precip_debug: lastPrecipError,
     };
   });
