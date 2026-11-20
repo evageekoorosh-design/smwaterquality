@@ -66,7 +66,9 @@ async function fetchNdbc(stationId: string): Promise<Map<string, { air: number |
 
 async function fetchPrecip(lat: number, lon: number): Promise<Map<string, number>> {
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=precipitation&past_days=7&forecast_days=1&timezone=UTC`;
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: { "User-Agent": "beach-water-tracker" },
+  });
   if (!res.ok) throw new Error(`Open-Meteo ${res.status}`);
   const json = (await res.json()) as { hourly: { time: string[]; precipitation: number[] } };
   const out = new Map<string, number>();

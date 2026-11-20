@@ -9,20 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WhyTemperatureRouteImport } from './routes/why-temperature'
-import { Route as WhyRainfallRouteImport } from './routes/why-rainfall'
-import { Route as BacteriaThresholdsRouteImport } from './routes/bacteria-thresholds'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BacteriaThresholdsRouteImport } from './routes/bacteria-thresholds'
+import { Route as WhyRainfallRouteImport } from './routes/why-rainfall'
+import { Route as WhyTemperatureRouteImport } from './routes/why-temperature'
 import { Route as BeachSlugRouteImport } from './routes/beach.$slug'
 
-const WhyTemperatureRoute = WhyTemperatureRouteImport.update({
-  id: '/why-temperature',
-  path: '/why-temperature',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WhyRainfallRoute = WhyRainfallRouteImport.update({
-  id: '/why-rainfall',
-  path: '/why-rainfall',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BacteriaThresholdsRoute = BacteriaThresholdsRouteImport.update({
@@ -30,9 +25,14 @@ const BacteriaThresholdsRoute = BacteriaThresholdsRouteImport.update({
   path: '/bacteria-thresholds',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const WhyRainfallRoute = WhyRainfallRouteImport.update({
+  id: '/why-rainfall',
+  path: '/why-rainfall',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhyTemperatureRoute = WhyTemperatureRouteImport.update({
+  id: '/why-temperature',
+  path: '/why-temperature',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BeachSlugRoute = BeachSlugRouteImport.update({
@@ -97,18 +97,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/why-temperature': {
-      id: '/why-temperature'
-      path: '/why-temperature'
-      fullPath: '/why-temperature'
-      preLoaderRoute: typeof WhyTemperatureRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/why-rainfall': {
-      id: '/why-rainfall'
-      path: '/why-rainfall'
-      fullPath: '/why-rainfall'
-      preLoaderRoute: typeof WhyRainfallRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bacteria-thresholds': {
@@ -118,11 +111,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BacteriaThresholdsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/why-rainfall': {
+      id: '/why-rainfall'
+      path: '/why-rainfall'
+      fullPath: '/why-rainfall'
+      preLoaderRoute: typeof WhyRainfallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/why-temperature': {
+      id: '/why-temperature'
+      path: '/why-temperature'
+      fullPath: '/why-temperature'
+      preLoaderRoute: typeof WhyTemperatureRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/beach/$slug': {
