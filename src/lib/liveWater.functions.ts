@@ -78,6 +78,38 @@ async function fetchPrecip(lat: number, lon: number): Promise<Map<string, number
   return out;
 }
 
+// Backup rainfall source: National Weather Service hourly observations (LAX).
+async function fetchPrecipNws(): Promise<Map<string, number>> {
+  const start = new Date(Date.now() - 8 * 24 * 3600_000).toISOString().slice(0, 19) + "Z";
+  const res = await fetch(`https://api.weather.gov/stations/KLAX/observations?start=${start}`, {
+    headers: { "User-Agent": "beach-water-tracker (smwaterquality.lovable.app)", Accept: "application/geo+json" },
+  });
+  if (!res.ok) throw new Error(`NWS ${res.status}`);
+  const json = (await res.json()) as {
+    features: { properties: { timestamp: string; precipitationLastHour?: { value: number | null } } }[];
+  };
+  const out = new Map<string, number>();
+  for (const f of json.features) {
+    const v = f.properties.precipitationLastHour?.value;
+    const d = new Date(f.properties.timestamp);
+    d.setUTCMinutes(0, 0, 0);
+    const key = d.toISOString().slice(0, 19) + "Z";
+    out.set(key, Math.max(out.get(key) ?? 0, v ?? 0));
+  }
+  return out;
+}
+
+async function fetchPrecipWithFallback(lat: number, lon: number): Promise<Map<string, number>> {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      return await fetchPrecip(lat, lon);
+    } catch {
+      // retry, then fall back
+    }
+  }
+  return fetchPrecipNws();
+}
+
 export type LiveInput = {
   stationId?: string;
   fallbackStations?: string[];
@@ -128,7 +160,7 @@ export const getLiveWaterData = createServerFn({ method: "GET" })
     }
     if (!anyNdbcSuccess) sourceStatus.ndbc = "error";
 
-    const precipRes = await Promise.allSettled([fetchPrecip(lat, lon)]);
+    const precipRes = await Promise.allSettled([fetchPrecipWithFallback(lat, lon)]);
     const precip = precipRes[0].status === "fulfilled" ? precipRes[0].value : new Map<string, number>();
     if (precipRes[0].status === "rejected") sourceStatus.openmeteo = "error";
 
