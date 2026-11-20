@@ -10,7 +10,7 @@
   "notes": {
     "air_temp_c": "Real NOAA NDBC ICAC1 hourly avg",
     "water_temp_c": "Real NOAA NDBC ICAC1 hourly avg",
-    "precip_mm": "Real Open-Meteo / NOAA gridpoint at 34.008,-118.499",
+    "precip_mm": "National Weather Service hourly observations at LAX (Open-Meteo as backup)",
     "enterococcus_mpn": "PROTOTYPE synthesized (rain-correlated). Replace with LA County DPH / Heal the Bay readings.",
     "status_threshold": "CA single-sample standard: >104 MPN/100mL = unsafe, >35 = caution"
   },

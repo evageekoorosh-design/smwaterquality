@@ -79,7 +79,7 @@ function Landing() {
 
         <footer className="text-xs text-muted-foreground border-t pt-6">
           <p>
-            <b>Data sources:</b> Air & water temperature from NOAA NDBC. Rainfall from Open-Meteo. Bacteria values are synthesized with realistic baseline noise plus rain-correlated spikes that decay over the 72-hour storm-drain advisory window.
+            <b>Data sources:</b> Air & water temperature from NOAA NDBC. Rainfall from National Weather Service observations at LAX (Open-Meteo as backup). Bacteria values are synthesized with realistic baseline noise plus rain-correlated spikes that decay over the 72-hour storm-drain advisory window.
           </p>
         </footer>
       </main>
