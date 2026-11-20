@@ -47,7 +47,7 @@ export const Route = createFileRoute("/beach/$slug")({
     <div className="min-h-screen grid place-items-center px-6 text-center">
       <div>
         <h1 className="text-xl font-semibold">Couldn't load this beach</h1>
-        <p className="text-sm text-muted-foreground mt-2">{error.message}</p>
+        <p className="text-sm text-muted-foreground mt-2">{error instanceof Error ? error.message : String(error)}</p>
         <button onClick={reset} className="mt-4 text-sky-600 hover:underline">Try again</button>
       </div>
     </div>
