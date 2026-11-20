@@ -27,7 +27,6 @@ export type LiveResponse = {
   daily: Daily[];
   live: boolean;
   source_status: { ndbc: "ok" | "error"; openmeteo: "ok" | "error" };
-  precip_debug?: string;
 };
 
 const DEFAULT_STATION = "ICAC1";
@@ -70,7 +69,7 @@ async function fetchPrecip(lat: number, lon: number): Promise<Map<string, number
   const res = await fetch(url, {
     headers: { "User-Agent": "beach-water-tracker" },
   });
-  if (!res.ok) throw new Error(`Open-Meteo ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  if (!res.ok) throw new Error(`Open-Meteo ${res.status}`);
   const json = (await res.json()) as { hourly: { time: string[]; precipitation: number[] } };
   const out = new Map<string, number>();
   json.hourly.time.forEach((t, i) => {
@@ -100,17 +99,15 @@ async function fetchPrecipNws(): Promise<Map<string, number>> {
   return out;
 }
 
-let lastPrecipError = "";
-
+// Rainfall: National Weather Service (LAX) first, so the preview and the live
+// site always use the same numbers; Open-Meteo is the backup. Open-Meteo's free
+// tier rate-limits (429) the shared servers the live site runs on.
 async function fetchPrecipWithFallback(lat: number, lon: number): Promise<Map<string, number>> {
-  for (let attempt = 0; attempt < 2; attempt++) {
-    try {
-      return await fetchPrecip(lat, lon);
-    } catch (e) {
-      lastPrecipError = e instanceof Error ? e.message : String(e);
-    }
+  try {
+    return await fetchPrecipNws();
+  } catch {
+    return fetchPrecip(lat, lon);
   }
-  return fetchPrecipNws();
 }
 
 export type LiveInput = {
@@ -194,14 +191,15 @@ export const getLiveWaterData = createServerFn({ method: "GET" })
       const p = precip.get(time);
       const fallback = staticByTime.get(time);
 
-      let rain72 = 0;
+      // Each hour of rain adds a spike that decays over the 72-hour advisory window.
+      let rainSpike = 0;
       for (let j = Math.max(0, idx - 71); j <= idx; j++) {
-        rain72 += precipByHour.get(hours[j]) ?? 0;
+        const mm = precipByHour.get(hours[j]) ?? 0;
+        if (mm >= 0.1) rainSpike += mm * 35 * Math.exp(-(idx - j) / 36);
       }
 
       const r = seeded(time);
       const baseline = 5 + r * 10;
-      const rainSpike = rain72 >= 0.1 ? rain72 * 35 * Math.exp(-((idx % 72) / 36)) : 0;
       const mpn = Math.round((baseline + rainSpike + r * 3) * 10) / 10;
 
       return {
@@ -248,6 +246,5 @@ export const getLiveWaterData = createServerFn({ method: "GET" })
       daily,
       live: true,
       source_status: sourceStatus,
-      precip_debug: lastPrecipError,
     };
   });
