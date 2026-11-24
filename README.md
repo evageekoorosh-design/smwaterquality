@@ -1,6 +1,7 @@
 # Beach Safe Now
 
-I would love to build a Beach Water Quality Tracker. Here is my building process-> NOAA data collection: bacteria, temperature, rainfall
+I built a Beach Water Quality Tracker. Here is my building process-> NOAA data collection: bacteria, temperature, rainfall
+It currently involves only a few popular beaches near the Los Angeles area. Will be integrating a "search" function for users to search any beach.
 
 Data cleaning: pandas — handle nulls
 
